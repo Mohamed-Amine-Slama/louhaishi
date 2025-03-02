@@ -1,0 +1,46 @@
+﻿.dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(to bottom, #000, #696969);
+}
+
+.dashboard-body {
+  display: flex;
+  flex: 1; 
+  overflow: hidden;
+  position: relative;
+  height: calc(100vh - 64px); /* Adjust this value based on navbar height */
+  width: 100%;  /* Ensure full width */
+  max-width: 100%;  /* Prevent overflow */
+}
+
+.dashboard-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;  /* Prevent horizontal scroll */
+  padding: 20px;
+  width: 100%;  /* Ensure full width */
+}
+
+/* Add styles for navbar positioning */
+.navbar {
+  width: 100%;
+  z-index: 100;
+  position: relative;
+}
+
+.dashboard-container {
+  display: flex;
+}
+
+.main-area {
+  flex-grow: 1;
+  /* Add other styles for main area */
+}
+
+/* Add other necessary styles */

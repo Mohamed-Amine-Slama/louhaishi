@@ -1,0 +1,59 @@
+﻿import React from 'react';
+import './MainContent.css';
+
+export default function MainContent({ isSidebarOpen }) {
+  // Sample data - in real app this would likely come from props or API
+  const tableData = [
+    {
+      id: 1,
+      name: "John Doe",
+      invoiceDate: "2024-01-15",
+      projectDate: "2024-01-01",
+      status: "success"
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      invoiceDate: "2024-01-20",
+      projectDate: "2024-01-05",
+      status: "pending"
+    },
+    // Add more sample data as needed
+  ];
+
+  return (
+    <main className={`main-content ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
+
+      <div className="table-container">
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Invoice Date</th>
+              <th>Project Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row) => (
+              <tr key={row.id}>
+                <td>{row.name}</td>
+                <td>{row.invoiceDate}</td>
+                <td>{row.projectDate}</td>
+                <td>
+                  <span className={`status-badge ${row.status}`}>
+                    {row.status}
+                  </span>
+                </td>
+                <td>
+                  <button className="action-button">View</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  );
+}

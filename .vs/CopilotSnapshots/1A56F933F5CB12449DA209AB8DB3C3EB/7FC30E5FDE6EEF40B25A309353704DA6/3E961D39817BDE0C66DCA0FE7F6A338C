@@ -1,0 +1,134 @@
+﻿.main-content {
+  flex: 1;
+  padding: 20px;
+  transition: 0.3s ease;
+}
+
+.main-content.shifted {
+  margin-left: var(--sidebar-width);
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .main-content {
+    padding: calc(var(--spacing-base) / 2);
+  }
+
+  .content-wrapper {
+    padding: calc(var(--spacing-base) / 2);
+  }
+
+  .content-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .grid-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .data-table {
+    font-size: 0.875rem;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 8px;
+  }
+  
+  .status-badge {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Focus States */
+.card:focus-within {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Data Table Styles (Enhanced) */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card-background, white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.data-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background-color: var(--background-color);
+}
+
+.table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status-badge.success {
+  background-color: #ecfdf5;
+  color: #059669;
+}
+
+.status-badge.pending {
+  background-color: #fff7ed;
+  color: #c2410c;
+}
+
+.action-button {
+  padding: 6px 12px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+}
+
+.action-button:hover {
+  background-color: #2563eb;
+}

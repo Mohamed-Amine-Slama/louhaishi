@@ -1,0 +1,270 @@
+﻿/* Main navigation bar container */
+.navbar {
+  /* Set width with margin for padding */
+  width: calc(100% - 40px);
+  /* Add padding around navbar content */
+  padding: 20px;
+  /* Remove default margins */
+  margin: 0 auto;
+  /* Use flexbox for layout */
+  display: flex;
+  /* Space items evenly */
+  justify-content: space-between;
+  /* Center items vertically */
+  align-items: center;
+  /* Make navbar stick to top */
+  position: sticky;
+  top: 0;
+  /* Ensure navbar stays above other content */
+  z-index: 1000;
+  /* Transparent background */
+  background: transparent;
+}
+
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    overflow: visible; /* Allow scaled content to overflow */
+    position: relative; /* For positioning the scaled image */
+    z-index: 1000; /* Very high z-index to ensure visibility */
+    /* White color for contrast */
+    color: #FFFFFF;
+    /* Tighter letter spacing for modern look */
+    letter-spacing: -0.5px;
+}
+
+.logo-image {
+    height: 350px; /* Increase height to 250px */
+    width: auto; /* Let width adjust automatically to maintain aspect ratio */
+    object-fit: contain;
+    transform-origin: left center; /* Scale from left side */
+    position: absolute; /* Position absolutely to break out of container */
+    top: -160px; /* Adjust top position to center vertically */
+    left: -50px;
+    z-index: 1000; /* Match parent's z-index */
+}
+
+/* Search bar container */
+.search-bar {
+  /* Negative margin to adjust position */
+  margin-left: 50px; /* Add some space from the logo */
+  margin-right: -30px;
+  /* Relative position for search icon */
+  position: relative;
+  /* Limit width to 40% of container */
+  max-width: 40%;
+}
+
+/* Search icon styling */
+.search-icon {
+  /* Absolute position within search bar */
+  position: absolute;
+  /* Position from left edge */
+  left: 12px;
+  /* Center vertically */
+  top: 50%;
+  transform: translateY(-50%);
+  /* Semi-transparent white color */
+  color: rgba(255, 255, 255, 0.8);
+  /* Reduce opacity for subtlety */
+  opacity: 0.5;
+  /* Larger icon size */
+  font-size: 1.3em;
+}
+
+/* Search input field */
+.search-bar input {
+  /* Padding for text input */
+  padding: 12px 20px;
+  /* Full width of container */
+  width: 100%;
+  /* Minimum width constraint */
+  min-width: 300px;
+  /* Maximum width constraint */
+  max-width: 500px;
+  /* Remove default border */
+  border: none;
+  /* Rounded corners */
+  border-radius: 8px;
+  /* Standard font size */
+  font-size: 1em;
+  /* Smooth transition for hover/focus */
+  transition: all 0.3s ease;
+  /* Semi-transparent background */
+  background-color: rgba(211, 211, 211, 0.3);
+  /* Space for search icon */
+  padding-left: 40px;
+  /* White text color */
+  color: white;
+}
+
+/* Placeholder text styling */
+.search-bar input::placeholder {
+  /* Semi-transparent white text */
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Focus state for search input */
+.search-bar input:focus {
+  /* Remove default outline */
+  outline: none;
+  /* Slightly more opaque background */
+  background-color: rgba(211, 211, 211, 0.4);
+  /* Remove box shadow */
+  box-shadow: none;
+}
+
+/* Navigation icons container */
+.nav-icons {
+  /* Flexbox for layout */
+  display: flex;
+  /* Center items vertically */
+  align-items: center;
+  /* Space between icons */
+  gap: 20px;
+}
+
+/* Notification icon styling */
+.notification-icon {
+  /* Relative position adjustment */
+  position: relative;
+  right: 100px !important;
+  /* Larger icon size */
+  font-size: 1.3em;
+  /* Darker grey color for visibility */
+  color: #333333;
+  /* Clickable cursor */
+  cursor: pointer;
+  /* Smooth color transition */
+  transition: color 0.2s ease;
+  /* Full opacity */
+  opacity: 1;
+  /* Fixed dimensions */
+  width: 40px;
+  height: 40px;
+  /* Flexbox for centering */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 3D transform style */
+  transform-style: preserve-3d;
+  perspective: 500px;
+}
+
+/* Notification icon SVG styling */
+.notification-icon svg {
+  /* Use current color */
+  fill: currentColor;
+  /* Fixed dimensions */
+  width: 24px;
+  height: 24px;
+}
+
+/* Notification icon before pseudo-element */
+.notification-icon::before {
+  /* Empty content */
+  content: '';
+  /* Absolute position */
+  position: absolute;
+  /* Circular shape */
+  border-radius: 50%;
+  /* 3D transform style */
+  transform-style: preserve-3d;
+  /* Smooth transition */
+  transition: all 0.3s ease;
+  /* Fixed dimensions */
+  width: 38px;
+  height: 38px;
+  /* Light grey border and background */
+  border: 2px solid #d3d3d3;
+  background-color: #d3d3d3;
+  /* Adjusted 3D transform */
+  transform: translateZ(-4px);
+  /* Subtle shadow */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  /* Full opacity */
+  opacity: 1;
+}
+
+/* Notification icon after pseudo-element */
+.notification-icon::after {
+  /* Empty content */
+  content: '';
+  /* Absolute position */
+  position: absolute;
+  /* Circular shape */
+  border-radius: 50%;
+  /* 3D transform style */
+  transform-style: preserve-3d;
+  /* Smooth transition */
+  transition: all 0.3s ease;
+  /* Fixed dimensions */
+  width: 46px;
+  height: 46px;
+  /* White border and background */
+  border: 2px solid #ffffff;
+  background-color: #ffffff;
+  /* Adjusted 3D transform */
+  transform: translateZ(-8px);
+  /* Subtle shadow */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  /* Full opacity */
+  opacity: 1;
+}
+
+/* Hover state for notification icon before pseudo-element */
+.notification-icon:hover::before {
+  /* Rotate 180 degrees */
+  transform: translateZ(-4px) rotate(-180deg);
+}
+
+/* Hover state for notification icon after pseudo-element */
+.notification-icon:hover::after {
+  /* Rotate 180 degrees */
+  transform: translateZ(-8px) rotate(180deg);
+}
+
+/* Hover state for notification icon */
+.notification-icon:hover {
+  /* Full opacity */
+  opacity: 1;
+  /* Darker color */
+  color: #1a1a1a;
+}
+
+/* Profile text styling */
+.profile-text {
+  /* Semi-bold font weight */
+  font-weight: 500;
+  /* White text color */
+  color: #FFFFFF;
+  /* Slight transparency */
+  opacity: 0.8;
+  /* Position from right edge */
+  right: 20px !important;
+  /* Clickable cursor */
+  cursor: pointer;
+}
+
+/* Profile image styling */
+.profile-image {
+  /* Fixed dimensions */
+  width: 50px;
+  height: 50px;
+  /* Circular shape */
+  border-radius: 50%;
+  /* Remove border */
+  border: none;
+  /* Remove box shadow */
+  box-shadow: none;
+  /* Smooth scale transition */
+  transition: transform 0.2s ease;
+}
+
+/* Hover state for profile image */
+.profile-image:hover {
+  /* Slight scale up on hover */
+  transform: scale(1.05);
+}

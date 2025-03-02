@@ -1,0 +1,111 @@
+﻿import React, { useState } from 'react';
+import { AiOutlineEye } from 'react-icons/ai';
+import './MainContent.css';
+
+export default function MainContent({ isSidebarOpen }) {
+  const [selectedRows, setSelectedRows] = useState([]); // Change to array for multiple selections
+  
+  const tableData = [
+    {
+      id: 1,
+      name: "John Doe",
+      invoiceDate: "2024-01-15",
+      projectDate: "2024-01-01",
+      status: "success"
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      invoiceDate: "2024-01-20",
+      projectDate: "2024-01-05",
+      status: "pending"
+    },
+    {
+      id: 3,
+      name: "Louhaishi",
+      invoiceDate: "2024-01-20",
+      projectDate: "2024-01-05",
+      status: "pending"
+    },
+    {
+      id: 4,
+      name: "Mohamed Amine",
+      invoiceDate: "2024-01-20",
+      projectDate: "2024-01-05",
+      status: "pending"
+    },
+  ];
+
+  const handleRadioChange = (id) => {
+    if (id === 'all') {
+      // If all rows are already selected, unselect all
+      if (selectedRows.length === tableData.length) {
+        setSelectedRows([]);
+      } else {
+        // Select all rows
+        setSelectedRows(tableData.map(row => row.id));
+      }
+    } else {
+      // Toggle individual row selection
+      if (selectedRows.includes(id)) {
+        setSelectedRows(selectedRows.filter(rowId => rowId !== id));
+      } else {
+        setSelectedRows([...selectedRows, id]);
+      }
+    }
+  };
+
+  return (
+    <main className={`main-content ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
+      <div className="table-container">
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"  // Changed from "radio"
+                  name="selectAll"
+                  checked={selectedRows.length === tableData.length}
+                  onChange={() => handleRadioChange('all')}
+                />
+              </th>
+              <th>Name</th>
+              <th>Invoice Date</th>
+              <th>Project Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row) => (
+              <tr key={row.id} style={{ backgroundColor: row.id % 2 === 0 ? '#282424' : '#796c6c' }}>
+                <td>
+                  <input
+                    type="checkbox"  // Changed from "radio"
+                    name={`select-${row.id}`}
+                    checked={selectedRows.includes(row.id)}
+                    onChange={() => handleRadioChange(row.id)}
+                  />
+                </td>
+                <td>{row.name}</td>
+                <td>{row.invoiceDate}</td>
+                <td>{row.projectDate}</td>
+                <td>
+                  <span className={`status-badge ${row.status}`}>
+                    {row.status}
+                  </span>
+                </td>
+                <td>
+                  <button className="action-button">
+                    <AiOutlineEye className="button-icon" />
+                    <span>View invoice</span>
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  );
+}

@@ -1,0 +1,39 @@
+﻿import React, { useState } from 'react';
+import Dashboard from './components/Dashboard';
+import Login from './components/Login';
+
+function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userProfile, setUserProfile] = useState(null);
+
+  const handleLogin = (userData) => {
+    // In a real app, you'd verify credentials with a backend
+    // For demo purposes, we'll accept any valid email/password
+    setIsAuthenticated(true);
+    setUserProfile({
+      name: userData.email.split('@')[0], // Use email username as display name
+      email: userData.email,
+      image: '👤'
+    });
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setUserProfile(null);
+  };
+
+  return (
+    <div className="app">
+      {isAuthenticated ? (
+        <Dashboard 
+          userProfile={userProfile} 
+          onLogout={handleLogout}
+        />
+      ) : (
+        <Login onLogin={handleLogin} />
+      )}
+    </div>
+  );
+}
+
+export default App;

@@ -1,0 +1,11 @@
+﻿// MainContent.jsx
+import React from 'react';
+
+export default function MainContent({ isSidebarOpen }) {
+  return (
+    <main className={`main-content ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
+      <h1>Welcome to Dashboard</h1>
+      <p>This is your main content area</p>
+    </main>
+  );
+}

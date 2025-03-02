@@ -1,0 +1,46 @@
+﻿import React, { useState } from 'react';
+import './Dashboard.css';
+import Sidebar from './SidebarModel';
+import MainContent from './MainContent';
+import Navbar from './Navbar';
+import ProfileSettings from './ProfileSettings';
+
+function Dashboard() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [currentView, setCurrentView] = useState('main');
+  const userProfile = { name: 'Student Name', image: '👤', email: 'student@example.com' };
+  
+  const handleMenuClick = (viewName) => {
+    setCurrentView(viewName);
+  };
+
+  try {
+    return (
+      <div className="dashboard">
+        <div className="navbar">
+          <Navbar />
+        </div>
+        <div className="dashboard-body">
+          <Sidebar 
+            isOpen={isSidebarOpen} 
+            toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+            onMenuClick={handleMenuClick}
+            userProfile={userProfile}
+          />
+          <div className="dashboard-content">
+            {currentView === 'profile' ? (
+              <ProfileSettings userProfile={userProfile} />
+            ) : (
+              <MainContent isSidebarOpen={isSidebarOpen} />
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  } catch (error) {
+    console.error('Dashboard rendering error:', error);
+    return <div>Error loading dashboard</div>;
+  }
+}
+
+export default Dashboard;

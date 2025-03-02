@@ -1,0 +1,568 @@
+﻿/* Define CSS variables for consistent sizing throughout the component */
+:root {
+  /* Set the default width for expanded sidebar */
+  --sidebar-width: 240px;
+  /* Set the width for collapsed sidebar, increased for better visibility */
+  --sidebar-collapsed-width: 80px;
+  /* Define border radius for consistent rounded corners */
+  --sidebar-border-radius: 16px;
+}
+
+/* Main sidebar container styling */
+.sidebar {
+  /* Use CSS variable for dynamic width */
+  width: var(--sidebar-width);
+  /* Light gray background for subtle appearance */
+  background-color: #f0f0f0;
+  /* Smooth transition for width changes */
+  transition: width 0.3s;
+  /* Limit the maximum height of sidebar */
+  max-height: 550px  !important;
+  /* Add subtle shadow for depth */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  /* Position relative for absolute positioned children */
+  position: relative;
+  /* Calculate height based on viewport minus margins */
+  height: calc(100vh - 20px);
+  /* Apply rounded corners using CSS variable */
+  border-radius: var(--sidebar-border-radius);
+  /* Add margin for spacing from edges */
+  margin: 10px;
+  /* Remove right padding to prevent overlap */
+  padding-right: 0;
+  /* Allow toggle button to overflow */
+  overflow: visible;
+  /* Ensure sidebar appears above other content */
+  z-index: 5;
+}
+
+/* Styling for collapsed state of sidebar */
+.sidebar.collapsed {
+  /* Use CSS variable for collapsed width */
+  width: var(--sidebar-collapsed-width);
+}
+
+/* Toggle button styling */
+.toggle-btn {
+  /* Position absolutely relative to sidebar */
+  position: absolute;
+  /* Position half outside the sidebar */
+  right: -11px;
+  /* Position from top for visibility */
+  top: 28px;
+  /* Gradient background for depth */
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  /* Subtle border for definition */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* Rounded corners for button */
+  border-radius: 6px;
+  /* Change cursor to pointer for better UX */
+  cursor: pointer;
+  /* Set button width */
+  width: 22px;
+  /* Set button height */
+  height: 22px;
+  /* Center button contents */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Set font size for button content */
+  font-size: 12px;
+  /* Ensure button appears above all content */
+  z-index: 10000;
+  /* Add 3D effect with shadow */
+  box-shadow: 
+    1px 1px 3px rgba(0, 0, 0, 0.1),
+    -1px -1px 2px rgba(255, 255, 255, 0.7);
+  /* Smooth transition for hover effects */
+  transition: all 0.2s ease;
+  /* Prevent button from being clipped */
+  overflow: visible;
+}
+
+/* Styling for collapsed state of toggle button */
+.sidebar.collapsed .toggle-btn {
+  /* Keep the same position when collapsed */
+  right: -11px;
+  top: 28px;
+}
+
+/* Hover state for toggle button */
+.toggle-btn:hover {
+  /* Change background gradient on hover */
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  /* Enhance shadow on hover */
+  box-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.2),
+    -1px -1px 3px rgba(255, 255, 255, 0.7);
+  /* Remove horizontal movement */
+  transform: translateX(0);
+}
+
+/* Active state for toggle button */
+.toggle-btn:active {
+  /* Change background gradient on active */
+  background: linear-gradient(145deg, #e6e6e6, #f0f0f0);
+  /* Inset shadow for pressed effect */
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.1),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.7);
+  /* Remove horizontal movement */
+  transform: translateX(0px);
+}
+
+/* Sidebar content styling */
+.sidebar-content {
+  /* Remove top margin since we moved the toggle */
+  margin-top: 0;
+  /* Keep content hidden while allowing button to overflow */
+  overflow: hidden;
+  /* Flexbox for vertical layout */
+  display: flex;
+  flex-direction: column;
+  /* Calculate height based on viewport minus margins */
+  height: calc(100vh - 80px);
+}
+
+/* Main content area styling */
+.main-content {
+  /* Allow main content to grow */
+  flex: 1;
+}
+
+/* Bottom wrapper styling */
+.bottom-wrapper {
+  /* Pull the wrapper up more */
+  margin-top: -10px;
+}
+
+/* Separator styling within bottom wrapper */
+.bottom-wrapper .separator {
+  /* Remove vertical margins */
+  margin: 0 15px;
+}
+
+/* Menu item styling */
+.menu-item {
+  /* Flexbox for horizontal layout */
+  display: flex;
+  align-items: center;
+  /* Increased horizontal padding */
+  padding: 12px 20px;
+  /* Change cursor to pointer for better UX */
+  cursor: pointer;
+  /* Smooth transition for hover effects */
+  transition: all 0.3s;
+  /* Prevent text wrapping */
+  white-space: nowrap;
+  /* Align items to start */
+  justify-content: flex-start;
+  /* Added for better positioning control */
+  position: relative;
+}
+
+/* Hover state for menu item */
+.menu-item:hover {
+  /* Light background on hover */
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Icon styling */
+.icon {
+  /* Set font size for icons */
+  font-size: 1.2rem;
+  /* Minimum width for icons */
+  min-width: 24px;
+  /* Flexbox for centering */
+  display: flex;
+  align-items: center;
+  /* Left align icons when expanded */
+  justify-content: flex-start;
+  /* Remove auto margin */
+  margin: 0;
+}
+
+/* SVG icon styling */
+.icon svg {
+  /* Default color for icons */
+  color: #555;
+  /* Smooth transition for color changes */
+  transition: color 0.3s;
+}
+
+/* Hover state for SVG icons */
+.menu-item:hover .icon svg {
+  /* Change color on hover */
+  color: #000;
+}
+
+/* Menu text styling */
+.menu-text {
+  /* Smooth transition for opacity and transform */
+  transition: opacity 0.2s, transform 0.2s;
+  /* Default opacity */
+  opacity: 1;
+  /* Default transform */
+  transform: translateX(0);
+  /* Increased spacing between icon and text */
+  margin-left: 16px;
+  /* Adjusted text size */
+  font-size: 0.95rem;
+}
+
+/* Collapsed state for menu text */
+.sidebar.collapsed .menu-text {
+  /* Hide text in collapsed state */
+  opacity: 0;
+  transform: translateX(10px);
+  width: 0;
+  visibility: hidden;
+}
+
+/* Collapsed state for menu item */
+.sidebar.collapsed .menu-item {
+  /* Center items in collapsed state */
+  justify-content: center;
+  /* Remove horizontal padding */
+  padding: 12px 0;
+  margin: 0;
+  /* Full width for better alignment */
+  width: 100%;
+}
+
+/* Collapsed state for icon */
+.sidebar.collapsed .icon {
+  /* Center icons in collapsed state */
+  justify-content: center;
+  margin: 0;
+  /* Full width centering */
+  min-width: 100%;
+  padding: 0;
+}
+
+/* Profile section styling */
+.profile-section {
+  /* Flexbox for horizontal layout */
+  display: flex;
+  align-items: center;
+  /* Padding for spacing */
+  padding: 20px;
+  /* Margin for spacing */
+  margin-bottom: 10px;
+  /* Space for toggle button */
+  padding-right: 45px;
+  /* Left align when expanded */
+  justify-content: flex-start;
+}
+
+/* Collapsed state for profile section */
+.sidebar.collapsed .profile-section {
+  /* Center items in collapsed state */
+  justify-content: center;
+  /* Simplified padding */
+  padding: 20px 0;
+}
+
+/* Profile picture styling */
+.profile-pic {
+  /* Set width and height */
+  width: 40px;
+  height: 40px;
+  /* Rounded corners for profile picture */
+  border-radius: 50%;
+  /* Light gray background */
+  background: #e0e0e0;
+  /* Flexbox for centering */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Set font size for initials */
+  font-size: 1.5rem;
+}
+
+/* Collapsed state for profile picture */
+.sidebar.collapsed .profile-pic {
+  /* Remove auto margin */
+  margin: 0;
+  /* Add space between pic and toggle button */
+  margin-right: 15px;
+}
+
+/* Profile info styling */
+.profile-info {
+  /* Flexbox for vertical layout */
+  display: flex;
+  flex-direction: column;
+  /* Spacing between profile picture and info */
+  margin-left: 12px;
+}
+
+/* Profile name styling */
+.profile-name {
+  /* Bold font for name */
+  font-weight: 500;
+  /* Prevent text wrapping */
+  white-space: nowrap;
+  /* Adjusted text size */
+  font-size: 0.95rem;
+  /* Margin for spacing */
+  margin-bottom: 2px;
+  margin-left: 0;
+}
+
+/* Profile type styling */
+.profile-type {
+  /* Adjusted text size */
+  font-size: 0.8rem;
+  /* Light gray color for type */
+  color: #666;
+  /* Prevent text wrapping */
+  white-space: nowrap;
+}
+
+/* Collapsed state for profile info */
+.sidebar.collapsed .profile-info {
+  /* Hide profile info in collapsed state */
+  display: none;
+}
+
+/* Separator styling */
+.separator {
+  /* Set height for separator */
+  height: 1px;
+  /* Light gray background */
+  background-color: rgba(0, 0, 0, 0.1);
+  /* Margin for spacing */
+  margin: 10px 15px;
+}
+
+/* Menu section styling */
+.menu-section {
+  /* Prevent shrinking */
+  flex-shrink: 0;
+  /* Pull the content up */
+  margin-bottom: -5px;
+}
+
+/* Bottom menu section styling */
+.menu-section.bottom {
+  /* Padding for spacing */
+  padding-top: 10px;
+  padding-bottom: 270px;
+  width: 100%;
+}
+
+/* Menu item styling within bottom section */
+.menu-section.bottom .menu-item {
+  /* Padding for spacing */
+  padding: 10px 15px;
+  /* Flexbox for horizontal layout */
+  display: flex;
+  align-items: center;
+  /* Slightly transparent */
+  opacity: 0.8;
+}
+
+/* Hover state for menu item within bottom section */
+.menu-section.bottom .menu-item:hover {
+  /* Fully opaque on hover */
+  opacity: 1;
+}
+
+/* Help item styling within bottom section */
+.menu-section.bottom .help-item {
+  /* Hide help item */
+  display: none;
+}
+
+/* SVG icon styling for help item */
+.menu-section.bottom .help-item .icon svg {
+  /* Blue color for help icon */
+  color: #0056b3;
+}
+
+/* Logout item styling within bottom section */
+.menu-section.bottom .logout-item {
+  /* Hide logout item */
+  display: none;
+}
+
+/* SVG icon styling for logout item */
+.menu-section.bottom .logout-item .icon svg {
+  /* Red color for logout icon */
+  color: #dc3545;
+}
+
+/* Last menu item styling within bottom section */
+.menu-section.bottom .menu-item:last-child {
+  /* Remove bottom margin */
+  margin-bottom: 0;
+}
+
+/* Collapsed state for profile name */
+.sidebar.collapsed .profile-name {
+  /* Hide profile name in collapsed state */
+  display: none;
+}
+
+/* Collapsed state for menu item within bottom section */
+.sidebar.collapsed .menu-section.bottom .menu-item {
+  /* Center items in collapsed state */
+  justify-content: center;
+  /* Remove horizontal padding */
+  padding: 12px 0;
+}
+
+/* Collapsed state for icon */
+.sidebar.collapsed .icon {
+  /* Center icons in collapsed state */
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* Collapsed state for profile section */
+.sidebar.collapsed .profile-section {
+  /* Center items in collapsed state */
+  justify-content: center;
+  /* Simplified padding */
+  padding: 20px 15px;
+}
+
+/* Help button styling */
+.sidebar-help-button {
+  /* Blue color for help button */
+  color: #0056b3;
+}
+
+/* SVG icon styling for help button */
+.sidebar-help-button .icon svg {
+  /* Blue color for help icon */
+  color: #0056b3;
+}
+
+/* Hover state for help button */
+.sidebar-help-button:hover {
+  /* Light blue background on hover */
+  background-color: rgba(0, 86, 179, 0.1);
+}
+
+/* Logout button styling */
+.sidebar-logout-button {
+  /* Red color for logout button */
+  color: #dc3545;
+}
+
+/* SVG icon styling for logout button */
+.sidebar-logout-button .icon svg {
+  /* Red color for logout icon */
+  color: #dc3545;
+}
+
+/* Hover state for logout button */
+.sidebar-logout-button:hover {
+  /* Light red background on hover */
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+/* Tooltip styling */
+.tooltip {
+  /* Fixed position for consistent placement */
+  position: fixed;
+  /* Dark background for contrast */
+  background-color: #2c2c2c;
+  /* White text for readability */
+  color: white;
+  /* Padding for spacing */
+  padding: 8px 12px;
+  /* Rounded corners for tooltip */
+  border-radius: 6px;
+  /* Adjusted text size */
+  font-size: 0.85rem;
+  /* Prevent text wrapping */
+  white-space: nowrap;
+  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  /* Smooth transition for visibility */
+  transition: opacity 0.2s ease;
+  /* Ensure tooltip appears above all content */
+  z-index: 99999;
+  /* Prevent pointer events */
+  pointer-events: none;
+  /* Enhanced tooltip shadow */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  /* Center vertically */
+  transform: translateY(-50%);
+  /* Adjusted margin for arrow */
+  margin-left: 15px; /* Increased space between icon and tooltip */
+  max-width: var(--sidebar-width); /* Limit tooltip width */
+}
+
+/* Arrow styling for tooltip */
+.tooltip::before {
+  /* Empty content for arrow */
+  content: '';
+  /* Absolute position for arrow */
+  position: absolute;
+  /* Adjusted position for arrow */
+  left: -8px; /* Move arrow slightly left */
+  /* Center vertically */
+  top: 50%;
+  transform: translateY(-50%);
+  /* Set size for arrow */
+  width: 0;
+  height: 0;
+  /* Define arrow shape */
+  border-style: solid;
+  border-width: 6px 8px 6px 0;
+  /* Dark color for arrow */
+  border-color: transparent #2c2c2c transparent transparent;
+  /* Enhanced shadow for arrow */
+  filter: drop-shadow(-2px 0px 2px rgba(0,0,0,0.2));
+}
+
+/* Show tooltip only in collapsed state */
+.sidebar.collapsed .menu-item:hover .tooltip {
+  /* Show tooltip on hover */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Add new positioning for collapsed state */
+.sidebar.collapsed .tooltip {
+  position: fixed;
+  margin-left: 15px;
+  transform: translateX(calc(-25% - 15px)) translateY(-50%);
+}
+
+/* Icon wrapper styling */
+.icon-wrapper {
+  /* Relative position for tooltip */
+  position: relative;
+  /* Flexbox for centering */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Collapsed state for icon wrapper */
+.sidebar.collapsed .icon-wrapper {
+  /* Relative position for tooltip */
+  position: relative;
+}
+
+/* Tooltip positioning logic for collapsed state */
+.sidebar.collapsed .icon-wrapper:hover .tooltip {
+  /* Show tooltip on hover */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Adjust icon wrapper in collapsed state */
+.sidebar.collapsed .icon-wrapper {
+  /* Full width for better alignment */
+  width: 100%;
+  /* Flexbox for centering */
+  display: flex;
+  justify-content: center;
+}
